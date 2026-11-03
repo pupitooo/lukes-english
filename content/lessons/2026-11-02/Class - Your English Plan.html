@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your English Plan</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#16202b;--muted:#5b6876;--line:#dde2e8;--accent:#1f6feb;--soft:#e8f0fe;--ok:#1a7f37;--mono:ui-monospace,SFMono-Regular,Consolas,monospace}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--card:#161b22;--ink:#e6edf3;--muted:#8b98a5;--line:#30363d;--accent:#58a6ff;--soft:#132339;--ok:#3fb950}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:860px;margin:0 auto;padding:32px 16px 64px}
+.tag{font:13px var(--mono);color:var(--accent)}
+h1{font-size:2rem;margin:.2em 0 .3em;line-height:1.2}
+h2{font-size:1.25rem;margin:2.2em 0 .8em}
+.lead{color:var(--muted);font-size:1.05rem;max-width:640px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:12px 0}
+.loop{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.loop .card{margin:0}
+.step{font:12px var(--mono);color:var(--accent);text-transform:uppercase;letter-spacing:.06em}
+.loop b{display:block;margin:4px 0 2px}
+.loop p{margin:0;color:var(--muted);font-size:.93rem}
+ol.road{list-style:none;padding:0;margin:0;counter-reset:c}
+ol.road li{counter-increment:c;display:grid;grid-template-columns:44px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+ol.road li:last-child{border-bottom:0}
+ol.road li::before{content:counter(c,decimal-leading-zero);font:600 15px var(--mono);color:var(--accent);padding-top:2px}
+ol.road span{display:block;color:var(--muted);font-size:.93rem}
+ol.road li.test::before{color:var(--ok)}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line)}
+th{font-weight:600;color:var(--muted);font-size:.85rem}
+td.v{font-family:var(--mono);width:22%}
+.note{color:var(--muted);font-size:.9rem}
+.big{font-size:1.1rem;font-weight:600}
+@media (max-width:520px){h1{font-size:1.6rem}td.v{width:28%}}
+</style>
+</head>
+<body>
+<main>
+<div class="tag">english for presenting solutions</div>
+<h1>Your English plan</h1>
+<p class="lead">Built from your email. Goal: present your solutions in English at the new job, without simplifying everything, and say more than what is necessary. We measure where you are now, train for eight classes, then measure again.</p>
+
+<h2>Every week</h2>
+<div class="loop">
+ <div class="card"><div class="step">Class day</div><b>Class</b><p>Speaking, your real work, live feedback.</p></div>
+ <div class="card"><div class="step">Within 24 h</div><b>Your pack arrives</b><p>A 3 minute audio story, a 20 question quiz, a card deck. All built from your own mistakes.</p></div>
+ <div class="card"><div class="step">Day 1</div><b>Listen</b><p>Once, no text. Then the 3 listening questions at the end of the quiz.</p></div>
+ <div class="card"><div class="step">Day 2</div><b>Quiz</b><p>20 questions. Target: 18 or more.</p></div>
+ <div class="card"><div class="step">Every day</div><b>Cards, 10 min</b><p>Short phrases only. Little and often beats once a week.</p></div>
+ <div class="card"><div class="step">Before class</div><b>Voice message</b><p>30 seconds, no script, no AI. The topic comes at the end of each class.</p></div>
+</div>
+<p class="note">About 90 minutes a week outside class.</p>
+
+<h2>The first eight classes</h2>
+<div class="card">
+<ol class="road">
+ <li class="test"><div><b>Baseline, your email code reviewed, the Solution Frame</b><span>Test now. 17 bugs from your email. Six steps for presenting any solution. The +1 rule.</span></div></li>
+ <li><div><b>Explaining tech to people who are not technical</b><span>Analogies, "in other words", simplifying without dumbing down.</span></div></li>
+ <li><div><b>Trade-offs and recommendations</b><span>Comparing options, "whereas", "the downside is", "it depends on".</span></div></li>
+ <li><div><b>Questions and pushback</b><span>Handling hard questions, polite disagreement, buying time.</span></div></li>
+ <li><div><b>Meetings and calls</b><span>Interrupting, clarifying, summarising what was agreed.</span></div></li>
+ <li><div><b>Status updates and demos</b><span>What is done, what is not yet, what happens next.</span></div></li>
+ <li><div><b>Small talk and stories</b><span>Saying more than what is necessary, at the coffee machine and in the meeting.</span></div></li>
+ <li class="test"><div><b>Retest and a 5 minute presentation</b><span>Same test, new questions. Same pitch, new topic. We compare the numbers.</span></div></li>
+</ol>
+</div>
+<p class="note">This is the route. If the new job brings something more urgent, we follow the job.</p>
+
+<h2>Your progress, in numbers</h2>
+<div class="card">
+<table>
+<tr><th>What we measure</th><th>Now</th><th>After 8 classes</th></tr>
+<tr><td>Fix It test, score out of 20</td><td class="v"></td><td class="v"></td></tr>
+<tr><td>Fix It test, time</td><td class="v"></td><td class="v"></td></tr>
+<tr><td>90 second pitch, seconds before you stop</td><td class="v"></td><td class="v"></td></tr>
+<tr><td>Fillers (ehm, eh, like)</td><td class="v"></td><td class="v"></td></tr>
+<tr><td>Signposts (first, the reason is, to sum up)</td><td class="v"></td><td class="v"></td></tr>
+<tr><td>+1s, saying more than what is necessary</td><td class="v"></td><td class="v"></td></tr>
+<tr><td>Bugs found in an email, out of 17</td><td class="v"></td><td class="v"></td></tr>
+</table>
+</div>
+<p class="note">Keep the recording of today's pitch on your phone. In January you will hear the difference yourself.</p>
+</main>
+</body>
+</html>

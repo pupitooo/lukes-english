@@ -1,0 +1,2 @@
+# Preserve supplied lesson files byte for byte, including their original line endings.
+content/** -text

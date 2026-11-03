@@ -1,0 +1,41 @@
+{
+  "title": "Baseline & the Solution Frame",
+  "description": "První lekce: rozbor e-mailu, výchozí test a šest kroků pro prezentování řešení.",
+  "date": "2026-11-02",
+  "number": 1,
+  "tags": [
+    "Prezentování",
+    "Gramatika",
+    "Poslech"
+  ],
+  "files": {
+    "Class - Handout.html": {
+      "title": "Zápisky z lekce",
+      "description": "Rozbor e-mailu, Solution Frame a pravidlo +1."
+    },
+    "Class - Your English Plan.html": {
+      "title": "Tvůj plán angličtiny",
+      "description": "Osm lekcí a pravidelná příprava."
+    },
+    "Homework - 0 Test.html": {
+      "title": "Vstupní test",
+      "description": "20 otázek · vyhodnocení po odeslání"
+    },
+    "Homework - 1 Listening.mp3": {
+      "title": "Poslech k lekci",
+      "description": "Dialog k domácímu procvičování."
+    },
+    "Homework - 1 Listening, tips.mp3": {
+      "title": "Tipy k poslechu",
+      "description": "Doplňující nahrávka od Luka."
+    },
+    "Homework - 3 Exercise.html": {
+      "title": "Much, many & friends",
+      "description": "Přehled pravidel, 50 vět a klíč k odpovědím."
+    },
+    "Homework - 5 Anki cards.apkg": {
+      "title": "Anki kartičky od Luka",
+      "description": "Původní balíček ke stažení."
+    }
+  }
+}

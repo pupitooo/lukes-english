@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Progress Test, Form A (baseline, 2 Nov 2026)</title>
+<style>
+  :root{
+    --ink:#23201b; --line:#d8cfc0; --bg:#f6f1e7; --card:#fffdf8; --accent:#7a5c3e;
+    --good:#3f7d4f; --good-bg:#eef6ef; --bad:#b04a3f; --bad-bg:#f8ecea;
+    --label-bg:#ffffff; --note:#5a5347; --btn-ink:#fff5e9;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#ece4d6; --line:#453b2e; --bg:#1c1712; --card:#252017; --accent:#d3ac7f;
+      --good:#7fc98e; --good-bg:#233524; --bad:#e2897c; --bad-bg:#3a2420;
+      --label-bg:#252017; --note:#b8ac98; --btn-ink:#1c1712;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#ece4d6; --line:#453b2e; --bg:#1c1712; --card:#252017; --accent:#d3ac7f;
+    --good:#7fc98e; --good-bg:#233524; --bad:#e2897c; --bad-bg:#3a2420;
+    --label-bg:#252017; --note:#b8ac98; --btn-ink:#1c1712;
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; padding:28px 16px 80px; background:var(--bg); color:var(--ink); font-family:Georgia,serif; line-height:1.5; }
+  .wrap{ max-width:720px; margin:0 auto; }
+  h1{ font-size:1.5rem; margin:0 0 4px; text-wrap:balance; }
+  .sub{ color:var(--accent); font-style:italic; margin:0 0 22px; }
+  .q{ background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px 18px; margin:0 0 14px; }
+  .qnum{ font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); }
+  .stem{ margin:6px 0 12px; font-size:1.05rem; }
+  label{ display:block; padding:9px 12px; margin:6px 0; border:1px solid var(--line); border-radius:8px; cursor:pointer; background:var(--label-bg); }
+  label:hover{ border-color:var(--accent); }
+  label:has(input:focus-visible){ outline:2px solid var(--accent); outline-offset:2px; }
+  input[type=radio]{ margin-right:9px; }
+  .reveal label.correct{ border-color:var(--good); background:var(--good-bg); }
+  .reveal label.wrongpick{ border-color:var(--bad); background:var(--bad-bg); }
+  .note{ font-size:.9rem; margin-top:8px; color:var(--note); display:none; }
+  .reveal .note{ display:block; }
+  .intro{ background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px 18px; margin:0 0 26px; }
+  .intro h2{ font-size:1.15rem; margin:0 0 6px; color:var(--accent); }
+  .intro h3{ font-size:.95rem; margin:18px 0 6px; color:var(--accent); }
+  .intro p{ margin:6px 0; }
+  .intro .tw{ overflow-x:auto; }
+  .intro table{ border-collapse:collapse; width:100%; font-size:.92rem; }
+  .intro th, .intro td{ border:1px solid var(--line); padding:7px 9px; text-align:left; vertical-align:top; }
+  .intro th{ color:var(--accent); font-weight:normal; }
+  .intro td:first-child{ white-space:nowrap; font-weight:bold; }
+  .intro .cz{ color:var(--note); font-style:italic; }
+  .sectionhead{ margin:28px 0 10px; padding-top:14px; border-top:2px solid var(--line); font-size:1.05rem; color:var(--accent); }
+  button{ font-family:inherit; font-size:1rem; background:var(--accent); color:var(--btn-ink); border:none; padding:12px 26px; border-radius:8px; cursor:pointer; }
+  button:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+  button:disabled{ opacity:.5; cursor:default; }
+  #score{ display:none; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:18px; margin:0 0 18px; font-size:1.15rem; }
+  #score b{ color:var(--accent); }
+  .bar{ position:sticky; bottom:0; background:linear-gradient(transparent,var(--bg) 30%); padding:18px 0 4px; text-align:center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Progress Test, Form A (baseline, 2 Nov 2026)</h1>
+  <p class="sub">20 questions, 4 per skill. Your teacher is timing you. Pick one answer each, then submit. When you submit, tell your teacher the score, the time and which sections lost points.</p>
+  <div id="score"></div>
+  <div id="quiz"></div>
+  <div class="bar"><button id="submit" disabled>Submit</button></div>
+</div>
+<script>
+const Q = [{"s": "I'll send you the logs as soon as the build ___.", "o": ["would finish", "finishes", "is going to finish", "will finish"], "a": 1, "n": "Future after when and if", "sec": "Section 1"}, {"s": "If the client ___ the new version, we'll roll it out next week.", "o": ["will approve", "approves", "approve", "would approve"], "a": 1, "n": "Future after when and if", "sec": "Section 1"}, {"s": "Don't merge anything until I ___ back from lunch.", "o": ["would get", "get", "am getting", "will get"], "a": 1, "n": "Future after when and if", "sec": "Section 1"}, {"s": "When the migration ___, the old database will be switched off.", "o": ["is done", "will be done", "would be done", "be done"], "a": 0, "n": "Future after when and if", "sec": "Section 1"}, {"s": "I've got ___ interview on Thursday.", "o": ["a", "an", "(nothing)", "the"], "a": 1, "n": "Articles", "sec": "Section 2"}, {"s": "She's ___ best developer in the team.", "o": ["(nothing)", "the", "an", "a"], "a": 1, "n": "Articles", "sec": "Section 2"}, {"s": "Is there ___ free slot on Friday?", "o": ["an", "the", "a", "(nothing)"], "a": 2, "n": "Articles", "sec": "Section 2"}, {"s": "___ security is everyone's job.", "o": ["(nothing)", "An", "The", "A"], "a": 0, "n": "Articles", "sec": "Section 2"}, {"s": "I want to get better ___ explaining my code.", "o": ["on", "in", "with", "at"], "a": 3, "n": "Verb patterns", "sec": "Section 3"}, {"s": "We need ___ the process.", "o": ["to simplify", "simplifying", "simplify", "of simplifying"], "a": 0, "n": "Verb patterns", "sec": "Section 3"}, {"s": "I'm not used to ___ in English.", "o": ["be presenting", "present", "presenting", "presented"], "a": 2, "n": "Verb patterns", "sec": "Section 3"}, {"s": "Let me check ___ my manager first.", "o": ["on", "to", "at", "with"], "a": 3, "n": "Verb patterns", "sec": "Section 3"}, {"s": "___ you still working on the API?", "o": ["Are", "Is", "Have", "Do"], "a": 0, "n": "Questions and word order", "sec": "Section 4"}, {"s": "Would it ___ possible to move the call?", "o": ["even be", "being even", "even being", "be even"], "a": 0, "n": "Questions and word order", "sec": "Section 4"}, {"s": "Can you tell me where ___?", "o": ["the server does", "is the server", "does the server be", "the server is"], "a": 3, "n": "Questions and word order", "sec": "Section 4"}, {"s": "How long ___ at your current company?", "o": ["you have been", "have you been", "are you", "do you work"], "a": 1, "n": "Questions and word order", "sec": "Section 4"}, {"s": "Can you ___ for me on Friday? I'm off.", "o": ["substitute me", "replace", "represent", "cover"], "a": 3, "n": "Natural English", "sec": "Section 5"}, {"s": "I speak to my old team ___.", "o": ["from time to time", "time to time", "time by time", "in time to time"], "a": 0, "n": "Natural English", "sec": "Section 5"}, {"s": "It works, and ___, it's fast.", "o": ["mostly", "most importantly", "the most", "mainly"], "a": 1, "n": "Natural English", "sec": "Section 5"}, {"s": "It's an ___ report.", "o": ["AI-generated", "generated AI", "AI generated by", "AI-generating"], "a": 0, "n": "Natural English", "sec": "Section 5"}];
+const quiz = document.getElementById('quiz');
+let lastSec = null;
+Q.forEach((q,i)=>{
+  if(q.sec && q.sec !== lastSec){
+    quiz.insertAdjacentHTML('beforeend', `<div class="sectionhead">${q.sec}</div>`);
+    lastSec = q.sec;
+  }
+  const opts = q.o.map((t,j)=>`<label data-i="${j}"><input type="radio" name="q${i}" value="${j}">${t}</label>`).join('');
+  quiz.insertAdjacentHTML('beforeend',
+    `<div class="q" id="q${i}"><div class="qnum">Question ${i+1} of 20</div><div class="stem">${q.s}</div>${opts}<div class="note"></div></div>`);
+});
+const submit = document.getElementById('submit');
+function ready(){ return Q.every((_,i)=>document.querySelector(`input[name="q${i}"]:checked`)); }
+quiz.addEventListener('change',()=>{ submit.disabled = !ready(); });
+submit.addEventListener('click',()=>{
+  let correct=0;
+  Q.forEach((q,i)=>{
+    const box=document.getElementById('q'+i); box.classList.add('reveal');
+    const picked=parseInt(document.querySelector(`input[name="q${i}"]:checked`).value);
+    if(picked===q.a) correct++;
+    box.querySelectorAll('label').forEach(l=>{ const j=parseInt(l.dataset.i);
+      if(j===q.a) l.classList.add('correct'); else if(j===picked) l.classList.add('wrongpick'); });
+    box.querySelector('.note').textContent = q.n;
+  });
+  const s=document.getElementById('score'); s.style.display='block';
+  s.innerHTML = `You scored <b>${correct} / 20</b>. Correct answers are green, wrong picks red, with a note under each.`;
+  submit.disabled=true; window.scrollTo({top:0,behavior:'smooth'});
+});
+</script>
+</body>
+</html>

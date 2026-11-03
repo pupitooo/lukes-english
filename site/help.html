@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="cs">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Přidat materiály · Luke's English</title><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/style.css"></head>
+<body>
+  <header class="site-header shell"><a class="brand" href="./"><img src="assets/favicon.svg" width="36" height="36" alt=""><span>Luke’s English<small>Petrova studovna</small></span></a><a class="back-link" href="./">← Zpět do knihovny</a></header>
+  <main class="shell help-main"><p class="eyebrow">KNIHOVNA, KTERÁ ROSTE S TEBOU</p><h1>Další lekce.<br>Další malý krok.</h1><p class="lead">Nové materiály přidáš přes GitHub. Po uložení se samy objeví ve studovně, obvykle během několika minut.</p>
+    <section class="help-step"><h2>1. Připrav složku</h2><p>Pro každou lekci nebo vlastní téma vytvoř jednu složku:</p><ul><li>Lekce s Lukem: <code>content/lessons/2026-11-09/</code></li><li>Vlastní téma: <code>content/topics/nazev-tematu/</code></li></ul><p>Vlož do ní HTML testy, zápisky, MP3 a přílohy. Soubory, které na sebe odkazují, ponech pohromadě pod původními názvy.</p></section>
+    <section class="help-step"><h2>2. Nahraj soubory</h2><ol><li>Otevři <a href="https://github.com/pupitooo/lukes-english/tree/main/content">složku content v repozitáři ↗</a>.</li><li>Na počítači zvol <b>Add file → Upload files</b> a přetáhni připravenou složku do <code>lessons</code> nebo <code>topics</code>.</li><li>Ulož změny tlačítkem <b>Commit changes</b> do větve <code>main</code>.</li></ol><p>Pokud složka ještě neexistuje, můžeš nejdřív přes <b>Add file → Create new file</b> vytvořit její <code>meta.json</code> podle vzoru níže a pak do ní nahrát ostatní soubory.</p><p class="help-note">Při nahrávání přes web GitHubu může mít jeden soubor nejvýše 25 MB. Větší nahrávky do 100 MB nahraj přes Git. Veřejné materiály může otevřít kdokoli s odkazem.</p></section>
+    <section class="help-step"><h2>3. Otevři studovnu</h2><p>Po dokončení <a href="https://github.com/pupitooo/lukes-english/actions">publikování na GitHubu ↗</a> obnov knihovnu. Nová lekce nebo téma už bude v přehledu. HTML se otevře jako stránka, MP3 v přehrávači a ostatní přílohy půjdou stáhnout.</p><a class="button primary" href="./">Zpět do knihovny →</a></section>
+    <details class="help-step"><summary>Volitelně: vlastní název, popis a pořadí lekce</summary><p>Do nové složky přidej soubor <code>meta.json</code>. Pro lekci může vypadat takto:</p><pre><code>{
+  "title": "Explaining solutions",
+  "description": "Analogie a vysvětlování vlastní práce.",
+  "date": "2026-11-09",
+  "number": 2,
+  "tags": ["Mluvení", "Poslech"],
+  "files": {
+    "Homework.html": {
+      "title": "Domácí test",
+      "kind": "test"
+    }
+  }
+}</code></pre><p>U vlastního tématu stačí <code>title</code>, <code>description</code> a <code>tags</code>. Bez metadat se použije název složky a titulky HTML souborů. Soubory s „test“ nebo „quiz“ v názvu se automaticky označí jako testy.</p></details>
+    <p class="help-note" style="margin-top:24px">Označení „hotovo“ se pamatuje pouze v daném prohlížeči. Mezi počítačem a mobilem se nepřenáší. Samotné testy si zachovávají původní způsob vyhodnocení.</p>
+  </main>
+  <footer class="site-footer shell"><span>Luke’s English / Little and often.</span><a href="https://github.com/pupitooo/lukes-english">Repozitář na GitHubu ↗</a></footer>
+</body></html>
