@@ -27,6 +27,8 @@ Copy uses the Clipboard API with a manual selection fallback. Native sharing is 
 
 Review supports the supplied classic `Q`-array quiz formats with `#questions` or `#quiz`. Other uploaded HTML still opens normally; it does not acquire a new grading engine automatically.
 
+The lesson 1 translation exercise has an individual answer reveal for each of its 50 sentences and three listening questions. Each item can also be selected for the shared Anki prompt, including while its answer is hidden. These exports contain the selected prompts, language targets and original solutions; they are manual requests for practice, with no recorded user answer or inferred mistake. Select all and clear selection are available in the Anki panel. Exercise pages opt into this mode with `data-anki-exercise` and the shared review assets.
+
 ## Local preview
 
 Python 3.9 or newer is sufficient; no external packages are required:

@@ -1,9 +1,10 @@
-/* Shared Anki review for the supplied Q-array quizzes. No results are uploaded automatically. */
+/* Shared Anki review for quizzes and sentence exercises. */
 (() => {
   'use strict';
-  if (typeof Q === 'undefined' || !Array.isArray(Q) || !Q.length) return;
-  const questions = Q;
-  const baseline = Boolean(document.getElementById('quiz'));
+  const exercise = document.querySelector('[data-anki-exercise]');
+  if (!exercise && (typeof Q === 'undefined' || !Array.isArray(Q) || !Q.length)) return;
+  const questions = exercise ? [...exercise.querySelectorAll('.it')] : Q;
+  const baseline = !exercise && Boolean(document.getElementById('quiz'));
   const states = new Map();
   const id = name => document.getElementById(name);
   let attempt, attemptStarted, generated = false;
@@ -20,14 +21,16 @@
   panel.setAttribute('aria-labelledby', 'anki-review-title');
   panel.hidden = true;
   panel.innerHTML = `
-    <p class="anki-eyebrow">Z TESTU DO ANKI</p>
+    <p class="anki-eyebrow">${exercise ? 'ZE CVIČENÍ' : 'Z TESTU'} DO ANKI</p>
     <h2 id="anki-review-title">Procvič si to, co potřebuješ</h2>
-    <p>Po vyhodnocení se u každé otázky objeví checkbox <b>Zahrnout do promptu pro Anki</b>. Chybné odpovědi jsou předvybrané; správné můžeš přidat ručně.</p>
+    <p>${exercise
+      ? 'U vět, které chceš procvičovat, zaškrtni <b>Zahrnout do promptu pro Anki</b>. Společný prompt bude obsahovat jen vybraná zadání a jejich řešení.'
+      : 'Po vyhodnocení se u každé otázky objeví checkbox <b>Zahrnout do promptu pro Anki</b>. Chybné odpovědi jsou předvybrané; správné můžeš přidat ručně.'}</p>
     <p class="anki-count" id="anki-count" role="status"></p>
     <div class="anki-actions">
       <button class="anki-primary" id="anki-generate" type="button" disabled>Vygenerovat prompt pro Codex</button>
       <button id="anki-copy" type="button" disabled>Kopírovat prompt</button>
-      <button id="anki-mistakes" type="button">Vybrat chyby</button>
+      <button id="anki-mistakes" type="button">${exercise ? 'Vybrat vše' : 'Vybrat chyby'}</button>
       <button id="anki-clear" type="button">Zrušit výběr</button>
     </div>
     <div id="anki-output" hidden>
@@ -41,20 +44,36 @@
     </div>
     <p id="anki-message" class="anki-message" role="status" aria-live="polite"></p>`;
   const result = id(baseline ? 'score' : 'result');
-  if (!result) return;
-  result.after(panel);
+  if (exercise) exercise.append(panel);
+  else if (result) result.after(panel);
+  else return;
 
   const jump = document.createElement('a');
   jump.className = 'anki-review-jump';
   jump.href = '#anki-review';
   jump.lang = 'cs';
   jump.hidden = true;
-  document.querySelector('.status, .bar')?.append(jump);
+  if (exercise) exercise.querySelector('.note')?.after(jump);
+  else document.querySelector('.status, .bar')?.append(jump);
   if (!baseline) document.querySelector('.status')?.classList.add('anki-status');
   const mobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
     || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
   function readQuestion(index) {
+    if (exercise) {
+      const box = questions[index];
+      const prompt = box.querySelector(':scope > p').cloneNode(true);
+      const number = prompt.querySelector('.n').textContent;
+      prompt.querySelector('.n').remove();
+      return {index, correct: null, signature: number, data: {
+        číslo_otázky: /^\d+$/.test(number) ? Number(number) : number,
+        zadání: prompt.textContent.trim(),
+        oblast: number.startsWith('L') ? 'poslech' : 'překlad z češtiny do angličtiny',
+        jazykový_cíl: [...prompt.querySelectorAll('b')].map(part => part.textContent),
+        výsledek: 'ruční výběr pro procvičení; vlastní odpověď ani její hodnocení nejsou zaznamenány',
+        správná_věta: box.querySelector('.k').textContent.trim(),
+      }};
+    }
     const question = questions[index], box = id(`q${index}`);
     if (!box) return null;
     const feedback = box.querySelector('.feedback');
@@ -92,19 +111,19 @@
 
   function promptText() {
     const selected = selectedQuestions();
-    return `Z vybraných vyhodnocených otázek mého testu angličtiny připrav vhodné Anki karty podle mých stávajících pravidel.
+    return `Z vybraných ${exercise ? 'vět a řešení mého cvičení' : 'vyhodnocených otázek mého testu'} angličtiny připrav vhodné Anki karty podle mých stávajících pravidel.
 
 Nejdřív přečti příslušné AGENTS.md a moje místní pravidla v /Users/pupek/.codex/english-support/Pravidla aktualizací.md, aktuální Anki/karty.json a Anki/Automatická synchronizace.md ve stejné složce. Pokud k těmto souborům nemáš přístup, vrať návrhy karet a jasně uveď, že nebyly vloženy.
 
 Požadavky:
 - Zpracuj jen níže vybrané otázky. Pro každou vyber hlavní jazykový cíl a navrhni krátkou, jednoznačnou produkční kartu: situace / český význam / anglické doplnění → přirozená americká anglická odpověď. Přidej užitečný příklad a stručné české vysvětlení. Nevytvářej opačný směr angličtina → čeština.
 - Ověř správnost a jednoznačnost klíče, nikoli jen shodu s uvedenou odpovědí. U nejasné otázky popiš problém a automaticky ji nepřidávej. Rozlišuj chybu, styl a vyžádané rozšíření; správně zodpovězená vybraná otázka není doklad chyby.
-- Testová volba je doklad jen tohoto pokusu, nikoli vlastní anglická próza ani opakovaný problém. Autorské zadání a možnosti odpovědí nejsou moje výroky. Stejný identifikátor pokusu a otázky znovu nezapočítej jako nový doklad.
+- ${exercise ? 'Jde o ručně vybrané učivo, nikoli doklad mé chyby. Vlastní překlad ani hodnocení odpovědi nejsou součástí tohoto cvičení. Zadání a vzorová řešení nejsou moje výroky.' : 'Testová volba je doklad jen tohoto pokusu, nikoli vlastní anglická próza ani opakovaný problém. Autorské zadání a možnosti odpovědí nejsou moje výroky.'} Stejný identifikátor pokusu a otázky znovu nezapočítej jako nový doklad.
 - Porovnej cíle s existujícími kartami i vazbami na původní poznámky. Duplicity sluč nebo doplň, zachovej ID a historii a neobnovuj známé či vyřazené položky. Opakované cíle z těchto otázek nevytvářej několikrát. Technický kontext sám o sobě není důvod učit technickou terminologii.
 - Máš-li místní podklady i živé Anki k dispozici, promítni vybrané neduplicitní změny do JSON/TSV a živého Anki se synchronizací podle mých platných pravidel a trvalého souhlasu. Zachovej ruční úpravy, jednostrannost, historii a intervaly; nejasné konflikty ponech čekající. Neobnovuj Obsidian slovníček.
 - Nakonec stručně uveď, co bylo vytvořeno, doplněno nebo už pokryto a co případně čeká. Neoznačuj návrh za vloženou kartu.
 
-Test: ${document.title}
+${exercise ? 'Cvičení' : 'Test'}: ${document.title}
 Zdroj: ${location.href.split('#')[0]}
 Identifikátor pokusu: ${attempt}
 Začátek pokusu: ${attemptStarted}
@@ -128,7 +147,7 @@ ${JSON.stringify(selected.map(state => ({...state.data, identifikátor_dokladu: 
     jump.hidden = false;
     jump.textContent = `Anki (${selected})`;
     id('anki-count').textContent = states.size
-      ? `Vybráno: ${selected} z ${states.size} vyhodnocených otázek.`
+      ? `Vybráno: ${selected} z ${states.size} ${exercise ? 'vět a otázek' : 'vyhodnocených otázek'}.`
       : baseline ? 'Nejdřív dokonči test a stiskni Submit. Potom vyber otázky pro Anki.'
         : 'Nejdřív vyhodnoť alespoň jednu otázku. Potom ji můžeš vybrat pro Anki.';
     id('anki-generate').disabled = selected === 0;
@@ -140,8 +159,8 @@ ${JSON.stringify(selected.map(state => ({...state.data, identifikátor_dokladu: 
   }
 
   function addCheckbox(state) {
-    const box = id(`q${state.index}`);
-    const host = baseline ? box : box.querySelector('.feedback');
+    const box = exercise ? questions[state.index] : id(`q${state.index}`);
+    const host = exercise || baseline ? box : box.querySelector('.feedback');
     let checkbox = host.querySelector('.anki-include');
     if (!checkbox) {
       const label = document.createElement('label');
@@ -151,11 +170,11 @@ ${JSON.stringify(selected.map(state => ({...state.data, identifikátor_dokladu: 
       checkbox.type = 'checkbox';
       checkbox.className = 'anki-include';
       checkbox.dataset.ankiQuestion = state.index;
-      checkbox.setAttribute('aria-label', `Zahrnout otázku ${state.index + 1} do promptu pro Anki`);
+      checkbox.setAttribute('aria-label', `Zahrnout otázku ${state.data.číslo_otázky} do promptu pro Anki`);
       const text = document.createElement('span');
       text.textContent = 'Zahrnout do promptu pro Anki';
       label.append(checkbox, text);
-      host.insertBefore(label, baseline ? null : host.querySelector('button'));
+      host.insertBefore(label, exercise || baseline ? null : host.querySelector('button'));
       checkbox.addEventListener('change', event => {
         // Keep review selection separate from the quiz's own change handlers.
         event.stopPropagation();
@@ -171,7 +190,7 @@ ${JSON.stringify(selected.map(state => ({...state.data, identifikátor_dokladu: 
       const current = readQuestion(index);
       if (!current) return;
       const old = states.get(index);
-      const state = {...current, selected: old?.signature === current.signature ? old.selected : !current.correct};
+      const state = {...current, selected: old?.signature === current.signature ? old.selected : !exercise && !current.correct};
       states.set(index, state);
       addCheckbox(state);
     });
@@ -179,7 +198,7 @@ ${JSON.stringify(selected.map(state => ({...state.data, identifikátor_dokladu: 
   }
 
   document.addEventListener('change', event => {
-    if (!event.target.matches('input[type="radio"]')) return;
+    if (exercise || !event.target.matches('input[type="radio"]')) return;
     if (baseline) {
       // Changed baseline answers must be submitted again before they can be exported.
       document.querySelectorAll('.anki-question-choice').forEach(choice => choice.remove());
@@ -189,6 +208,7 @@ ${JSON.stringify(selected.map(state => ({...state.data, identifikátor_dokladu: 
     } else sync();
   });
   document.addEventListener('click', event => {
+    if (exercise) return;
     if (event.target.closest('#reset')) {
       document.querySelectorAll('.anki-question-choice').forEach(choice => choice.remove());
       states.clear();
@@ -204,7 +224,7 @@ ${JSON.stringify(selected.map(state => ({...state.data, identifikátor_dokladu: 
     update();
     id('anki-output').scrollIntoView({behavior:'smooth', block:'nearest'});
   });
-  for (const [button, choose] of [['anki-mistakes', state => !state.correct], ['anki-clear', () => false]]) {
+  for (const [button, choose] of [['anki-mistakes', state => exercise || !state.correct], ['anki-clear', () => false]]) {
     id(button).addEventListener('click', () => {
       states.forEach(state => {state.selected = choose(state); addCheckbox(state);});
       update();

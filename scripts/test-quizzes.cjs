@@ -139,6 +139,55 @@ async function main() {
           }
           console.log(`PASS ${engine}: ${test.path}`);
         }
+        // Sentence exercises export manually selected material without inventing user mistakes.
+        const exercise = catalog.groups.flatMap(group=>group.resources).find(resource=>resource.path.endsWith('Homework - 3 Exercise.html'));
+        await page.goto(base+exercise.path.split('/').map(encodeURIComponent).join('/')+'?v='+catalog.build);
+        const cards = page.locator('[data-anki-exercise] .it');
+        assert.equal(await cards.count(),53);
+        assert.equal(await page.locator('.anki-include').count(),53);
+        assert.equal(await page.locator('.anki-include:checked').count(),0);
+        assert(await page.locator('#anki-copy').isDisabled());
+        for (let index=0;index<53;index++) assert(!(await cards.nth(index).locator('.k').isVisible()));
+        for (const index of [0,24,49,52]) {
+          const card=cards.nth(index);
+          await card.locator('summary').tap();
+          assert(await card.locator('.k').isVisible());
+          await card.locator('summary').tap();
+          assert(!(await card.locator('.k').isVisible()));
+          await card.locator('.anki-question-choice').tap();
+        }
+        await cards.nth(0).locator('summary').tap();
+        assert.equal(await page.locator('.anki-include:checked').count(),4,'Reveal must preserve selection');
+        await page.locator('#anki-copy').tap();
+        const exercisePrompt = await page.locator('#anki-prompt').inputValue();
+        const exerciseData = JSON.parse(exercisePrompt.slice(exercisePrompt.indexOf('[\n')));
+        assert.deepEqual(exerciseData.map(item=>item.číslo_otázky),[1,25,50,'L3']);
+        assert.equal(exerciseData[0].zadání,'Kolik času ti to zabere?');
+        assert.equal(exerciseData[0].správná_věta,'How much time will it take you?');
+        assert.deepEqual(exerciseData[0].jazykový_cíl,['Kolik času']);
+        assert.equal(exerciseData[3].správná_věta,'She checks his English, he checks her Scala.');
+        assert(exerciseData.every(item=>item.výsledek.includes('vlastní odpověď ani její hodnocení nejsou zaznamenány')));
+        assert(exercisePrompt.includes('nikoli doklad mé chyby'));
+        assert.equal(new Set(exerciseData.map(item=>item.identifikátor_dokladu)).size,4);
+        if(engine==='chromium') assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),exercisePrompt);
+        // Generated prompts track deselection and preserve identifiers for remaining entries.
+        await cards.nth(24).locator('.anki-question-choice').tap();
+        const updated = await page.locator('#anki-prompt').inputValue();
+        const updatedData = JSON.parse(updated.slice(updated.indexOf('[\n')));
+        assert.deepEqual(updatedData.map(item=>item.číslo_otázky),[1,50,'L3']);
+        assert.equal(updatedData[0].identifikátor_dokladu,exerciseData[0].identifikátor_dokladu);
+        await page.locator('#anki-mistakes').tap();
+        assert.equal(await page.locator('.anki-include:checked').count(),53);
+        await page.locator('#anki-clear').tap();
+        assert.equal(await page.locator('.anki-include:checked').count(),0);
+        assert(await page.locator('#anki-copy').isDisabled());
+        assert(!(await page.locator('#anki-output').isVisible()));
+        assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+        await page.goto(base+'study.html?file='+encodeURIComponent(exercise.path)+'&v='+catalog.build);
+        await page.frameLocator('iframe').locator('.anki-question-choice').first().tap();
+        await page.frameLocator('iframe').locator('#anki-copy').tap();
+        assert((await page.frameLocator('iframe').locator('#anki-prompt').inputValue()).includes('How much time'));
+        console.log(`PASS ${engine}: sentence answer reveals, manual Anki selection, prompt updates, copying and iframe`);
         // Check the same feature in the library's iframe and follow its test-to-test links.
         const conditional=tests.find(test=>test.path.includes('conditionals'));
         await page.goto(base+'study.html?file='+encodeURIComponent(conditional.path)+'&v='+catalog.build);
