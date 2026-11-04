@@ -1,0 +1,20 @@
+/* Scoped styles keep the original quiz controls and feedback intact. */
+.anki-review,.anki-question-choice,.anki-review-jump{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.anki-review{background:var(--card,#fffefa);color:var(--ink,#253b32);border:1px solid var(--line,#d4d9cd);border-radius:12px;padding:22px;margin:24px 0;scroll-margin-top:95px;font-size:15px;line-height:1.65}
+.anki-review h2{font-family:Georgia,serif;font-size:24px;line-height:1.3;color:inherit;margin:5px 0 13px;text-transform:none;letter-spacing:-.3px}
+.anki-review p{margin:8px 0}.anki-review .anki-eyebrow{font-size:10px;letter-spacing:1.6px;font-weight:700;color:var(--accent,#234b3d)}
+.anki-review .anki-actions{display:flex;flex-wrap:wrap;gap:9px;margin:16px 0}
+.anki-review button,.anki-review .anki-actions a{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-height:42px;padding:9px 13px;border:1px solid var(--line,#d4d9cd);border-radius:7px;background:var(--card,#fffefa);color:var(--ink,#253b32);font:600 13px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none;cursor:pointer;overflow-wrap:anywhere}
+.anki-review button.anki-primary{background:var(--accent,#234b3d);border-color:var(--accent,#234b3d);color:var(--btn-ink,var(--bg,#fffefa))}
+.anki-review button:disabled{opacity:.5;cursor:default}.anki-review .anki-count{font-size:13px;font-weight:600}.anki-review .anki-help{font-size:12px;color:var(--muted,var(--note,#6c746c))}
+.anki-review .anki-output-label{display:block;margin:15px 0 8px;padding:0;border:0;background:none;border-radius:0;box-shadow:none;font-size:13px;font-weight:650;cursor:default}
+.anki-review textarea{width:100%;max-width:100%;box-sizing:border-box;min-height:220px;resize:vertical;border:1px solid var(--line,#d4d9cd);border-radius:7px;background:var(--bg,#f8f7f2);color:var(--ink,#253b32);font:13px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;padding:12px}
+.anki-review .anki-message{font-size:13px}.anki-review .anki-message:empty{display:none}
+label.anki-question-choice{display:flex;align-items:center;gap:10px;padding:13px 12px!important;margin:20px 0 0!important;border:1px solid var(--line,#d4d9cd)!important;border-radius:7px;background:var(--card,#fffefa)!important;color:var(--ink,#253b32);font-size:14px;line-height:1.5;box-shadow:none!important;cursor:pointer}
+.anki-question-choice input.anki-include{width:20px;height:20px;min-width:20px;flex-shrink:0;accent-color:var(--accent,#234b3d);margin:0}
+.anki-review-jump{display:inline-block;font-size:12px;line-height:1.5;border:1px solid var(--line,#d4d9cd);background:var(--card,#fffefa);color:var(--ink,#253b32);padding:5px 10px;border-radius:6px;text-decoration:none;margin-left:auto;white-space:nowrap}
+.anki-status{flex-wrap:wrap}.bar .anki-review-jump{margin-left:12px}
+.anki-review [hidden],.anki-review[hidden],.anki-review-jump[hidden]{display:none!important}
+.anki-review button:focus-visible,.anki-review a:focus-visible,.anki-review textarea:focus-visible,.anki-review-jump:focus-visible,.anki-question-choice:has(input:focus-visible){outline:3px solid #b3653b;outline-offset:3px}
+@media(max-width:520px){.anki-review{padding:17px}.anki-review h2{font-size:22px}.anki-review textarea{font-size:16px}.anki-review .anki-actions{gap:8px}.anki-review button,.anki-review .anki-actions a{font-size:12px;min-height:44px}}
+@media print{.anki-review,.anki-review-jump,.anki-question-choice{display:none!important}}

@@ -1,38 +1,38 @@
 <!doctype html>
-<html lang="cs">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#234b3d">
-  <meta name="description" content="Petrova angličtina s Lukem. Lekce, interaktivní testy, poslech a vlastní témata na jednom místě.">
-  <title>Luke's English · Moje studovna</title>
+  <meta name="description" content="Petr's English lessons with Luke. Interactive tests, listening practice and personal topics in one place.">
+  <title>Luke's English · My study space</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/style.css">
   <script type="module" src="assets/library.js"></script>
 </head>
 <body>
-  <a class="skip" href="#library">Přejít na materiály</a>
+  <a class="skip" href="#library">Skip to materials</a>
   <header class="site-header shell">
-    <a class="brand" href="./" aria-label="Luke's English, domů"><img src="assets/favicon.svg" width="36" height="36" alt=""><span>Luke’s English<small>Petrova studovna</small></span></a>
-    <nav aria-label="Hlavní navigace"><a href="#library" data-view="lessons">Lekce s Lukem</a><a href="#library" data-view="topics">Vlastní témata</a><a class="add-link" href="help.html"><span aria-hidden="true">＋</span> Přidat materiály</a></nav>
+    <a class="brand" href="./" aria-label="Luke's English, home"><img src="assets/favicon.svg" width="36" height="36" alt=""><span>Luke’s English<small>Petr’s study space</small></span></a>
+    <nav aria-label="Main navigation"><a href="#library" data-view="lessons">Lessons with Luke</a><a href="#library" data-view="topics">My topics</a><a class="add-link" href="help.html"><span aria-hidden="true">＋</span> Add materials</a></nav>
   </header>
   <main class="shell">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-copy"><p class="eyebrow"><span class="dot"></span> LITTLE AND OFTEN</p><h1 id="hero-title">O kousek lepší.<br>Každou lekcí.</h1><p class="hero-description">Zápisky od Luka, poslech i vlastní testy.<br>Všechna tvoje angličtina na jednom místě.</p><div class="hero-actions"><a class="button primary" id="latest-link" href="#library">Otevřít poslední lekci <span aria-hidden="true">↗</span></a><a class="text-link" href="#library" data-view="topics">Procvičit vlastní témata <span aria-hidden="true">→</span></a></div></div>
-      <aside class="practice-note" aria-label="Tip pro procvičování"><span class="note-top">A NOTE TO MYSELF <span aria-hidden="true">✳</span></span><p>A little practice.<br>A lot of progress.</p><div class="note-rule"></div><span class="note-caption">Poslechni si příběh. Zkus jeden test.<br>A příště zase o něco jistěji.</span><div class="note-bottom"><span>KEEP GOING</span><span aria-hidden="true">↗</span></div></aside>
+      <div class="hero-copy"><p class="eyebrow"><span class="dot"></span> LITTLE AND OFTEN</p><h1 id="hero-title">A little better.<br>Every lesson.</h1><p class="hero-description">Luke’s notes, listening practice and your own tests.<br>All your English in one place.</p><div class="hero-actions"><a class="button primary" id="latest-link" href="#library">Open latest lesson <span aria-hidden="true">↗</span></a><a class="text-link" href="#library" data-view="topics">Practice my topics <span aria-hidden="true">→</span></a></div></div>
+      <aside class="practice-note" aria-label="Practice tip"><span class="note-top">A NOTE TO MYSELF <span aria-hidden="true">✳</span></span><p>A little practice.<br>A lot of progress.</p><div class="note-rule"></div><span class="note-caption">Listen to a story. Try a test.<br>Come back a little more confident.</span><div class="note-bottom"><span>KEEP GOING</span><span aria-hidden="true">↗</span></div></aside>
     </section>
-    <section class="stats" aria-label="Obsah studovny"><div><strong id="lesson-count">—</strong><span id="lesson-label">lekcí s Lukem</span></div><div><strong id="test-count">—</strong><span id="test-label">vlastních testů</span></div><div><strong id="audio-count">—</strong><span id="audio-label">nahrávek k poslechu</span></div><p>Vlastním tempem.<br><b>Od pochopení k procvičení.</b></p></section>
+    <section class="stats" aria-label="Library at a glance"><div><strong id="lesson-count">—</strong><span id="lesson-label">lessons with Luke</span></div><div><strong id="test-count">—</strong><span id="test-label">practice tests</span></div><div><strong id="audio-count">—</strong><span id="audio-label">listening tracks</span></div><p>At your own pace.<br><b>From understanding to practice.</b></p></section>
     <section id="library" class="library" aria-labelledby="library-title">
-      <div class="section-heading"><div><p class="eyebrow">TVŮJ PROSTOR PRO ANGLIČTINU</p><h2 id="library-title">Moje knihovna</h2></div><label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg><span class="sr-only">Hledat lekci, téma nebo materiál</span><input id="search" type="search" placeholder="Najít lekci nebo téma…" autocomplete="off"></label></div>
-      <div class="filter-row"><div class="filters" role="group" aria-label="Zobrazit materiály"><button type="button" data-filter="all" aria-pressed="true">Vše <span id="all-count"></span></button><button type="button" data-filter="lessons" aria-pressed="false">Lekce s Lukem</button><button type="button" data-filter="topics" aria-pressed="false">Vlastní témata</button></div><span class="library-hint">Malý krok každý den.</span></div>
-      <p id="load-status" role="status">Načítám materiály…</p>
+      <div class="section-heading"><div><p class="eyebrow">YOUR SPACE FOR ENGLISH</p><h2 id="library-title">My library</h2></div><label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg><span class="sr-only">Search lessons, topics or materials</span><input id="search" type="search" placeholder="Find a lesson or topic…" autocomplete="off"></label></div>
+      <div class="filter-row"><div class="filters" role="group" aria-label="Filter materials"><button type="button" data-filter="all" aria-pressed="true">All <span id="all-count"></span></button><button type="button" data-filter="lessons" aria-pressed="false">Lessons with Luke</button><button type="button" data-filter="topics" aria-pressed="false">My topics</button></div><span class="library-hint">A small step every day.</span></div>
+      <p id="load-status" role="status">Loading materials…</p>
       <div id="groups"></div>
-      <p id="empty" class="empty" hidden>Nic takového tu zatím není. Zkus jiné slovo nebo zobraz všechny materiály.</p>
-      <p class="storage-note" id="storage-note">Označení „hotovo“ se ukládá jen v tomto prohlížeči. Výsledky testů zůstávají v otevřeném testu.</p>
-      <noscript><p>Pro přehled materiálů a interaktivní testy zapni JavaScript. <a href="https://github.com/pupitooo/lukes-english/tree/main/content">Soubory najdeš také v repozitáři.</a></p></noscript>
+      <p id="empty" class="empty" hidden>No matches yet. Try another search or show all materials.</p>
+      <p class="storage-note" id="storage-note">Done markers are saved in this browser only. Test results stay in the current test.</p>
+      <noscript><p>Enable JavaScript to browse materials and take interactive tests. <a href="https://github.com/pupitooo/lukes-english/tree/main/content">You can also find the files in the repository.</a></p></noscript>
     </section>
-    <a class="add-banner" href="help.html"><span class="add-symbol" aria-hidden="true">＋</span><span><strong>Další lekce? Nové téma?</strong><small>Přidej soubory a knihovna se sama rozroste.</small></span><span aria-hidden="true">↗</span></a>
+    <a class="add-banner" href="help.html"><span class="add-symbol" aria-hidden="true">＋</span><span><strong>Another lesson? A new topic?</strong><small>Add your files and the library grows with you.</small></span><span aria-hidden="true">↗</span></a>
   </main>
-  <footer class="site-footer shell"><span>Luke’s English <span class="footer-separator">/</span> Little and often.</span><a href="https://github.com/pupitooo/lukes-english">Repozitář na GitHubu ↗</a></footer>
+  <footer class="site-footer shell"><span>Luke’s English <span class="footer-separator">/</span> Little and often.</span><a href="https://github.com/pupitooo/lukes-english">GitHub repository ↗</a></footer>
 </body>
 </html>

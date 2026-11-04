@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Build the library from content folders; Python's standard library is enough."""
 import json
+import os
 import re
 import shutil
 from datetime import date
+from html import escape
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
@@ -58,6 +60,21 @@ def kind_for(path):
     return "download"
 
 
+def enhance_test(destination):
+    """Add review tools to supported quizzes without editing the supplied source."""
+    text = destination.read_text()
+    if not (re.search(r"\b(?:const|let|var)\s+Q\s*=", text)
+            and re.search(r'''id=["'](?:questions|quiz)["']''', text)):
+        return False
+    assets = Path(os.path.relpath(OUT / "assets", destination.parent)).as_posix()
+    style = f'<link rel="stylesheet" href="{escape(assets)}/review.css">'
+    script = f'<script defer src="{escape(assets)}/review.js"></script>'
+    text = re.sub(r"</head\s*>", lambda m: style + m.group(), text, count=1, flags=re.I)
+    text = re.sub(r"</body\s*>", lambda m: script + m.group(), text, count=1, flags=re.I)
+    destination.write_text(text)
+    return True
+
+
 def build():
     if OUT.exists():
         shutil.rmtree(OUT)
@@ -99,13 +116,16 @@ def build():
                     info.feed(path.read_text())
                     title = info.title.strip() or title
                 override = meta.get("files", {}).get(rel.as_posix(), {})
+                kind = override.get("kind", kind_for(path))
+                review = enhance_test(destination) if kind == "test" else False
                 resources.append({
                     "path": path.relative_to(ROOT).as_posix(),
                     "title": override.get("title", title),
                     "description": override.get("description", ""),
-                    "kind": override.get("kind", kind_for(path)),
+                    "kind": kind,
+                    "ankiReview": review,
                     "extension": path.suffix[1:].upper(),
-                    "bytes": path.stat().st_size,
+                    "bytes": destination.stat().st_size,
                 })
             if resources:
                 groups.append({

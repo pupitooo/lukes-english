@@ -4,7 +4,7 @@ let activePath;
 function updateDone() {
   const done = getCompleted().has(activePath);
   $('mark-done').setAttribute('aria-pressed', String(done));
-  $('mark-done').textContent = done ? '✓ Hotovo' : 'Označit jako hotové';
+  $('mark-done').textContent = done ? '✓ Done' : 'Mark as done';
 }
 $('mark-done').addEventListener('click', () => { toggleCompleted(activePath); updateDone(); });
 $('resource-picker').addEventListener('change', event => { location.href = studyURL(event.target.value); });
@@ -12,12 +12,12 @@ try {
   const {groups} = await loadCatalog();
   activePath = new URLSearchParams(location.search).get('file');
   const group = groups.find(g => g.resources.some(r => r.path === activePath));
-  if (!group) throw new Error('Tento materiál v knihovně není.');
+  if (!group) throw new Error('This material is not in the library.');
   const resource = group.resources.find(r => r.path === activePath);
   const url = resourceURL(resource.path);
   document.title = `${resource.title} · Luke's English`;
   $('group-title').textContent = group.title;
-  $('group-category').textContent = group.category === 'lessons' ? 'LEKCE S LUKEM' : 'VLASTNÍ TÉMA';
+  $('group-category').textContent = group.category === 'lessons' ? 'LESSONS WITH LUKE' : 'MY TOPICS';
   $('resource-title').textContent = resource.title;
   $('original').href = url;
   document.querySelector('.back-link').href = `./#${group.id.replace('/', '-')}`;
@@ -29,6 +29,7 @@ try {
   if (['test','document','pdf'].includes(resource.kind)) {
     const frame = document.createElement('iframe');
     frame.title = resource.title;
+    frame.allow = 'clipboard-write; web-share';
     frame.src = url;
     // Keep the portal heading and selected item in sync with links inside the original tests.
     frame.addEventListener('load', () => {
@@ -40,9 +41,9 @@ try {
     });
     $('stage').replaceChildren(frame);
   } else {
-    const media = ['audio','video'].includes(resource.kind) ? `<${resource.kind} controls preload="metadata" src="${e(url)}">Tvůj prohlížeč přehrávač nepodporuje. Stáhni si soubor níže.</${resource.kind}>` : '';
-    $('stage').innerHTML = `<section class="media-card"><span class="resource-icon ${e(resource.kind)}">${icon(resource.kind)}</span><p class="eyebrow">${e(labels[resource.kind] || resource.extension)}</p><h3>${e(resource.title)}</h3><p>${e(resource.description)}</p>${media}<p class="media-meta">${e(resource.extension)} · ${e(fileSize(resource.bytes))}</p><a class="button" href="${e(url)}" download>Stáhnout ${e(resource.extension)} <span aria-hidden="true">↓</span></a></section>`;
+    const media = ['audio','video'].includes(resource.kind) ? `<${resource.kind} controls preload="metadata" src="${e(url)}">Your browser cannot play this file. Download it below.</${resource.kind}>` : '';
+    $('stage').innerHTML = `<section class="media-card"><span class="resource-icon ${e(resource.kind)}">${icon(resource.kind)}</span><p class="eyebrow">${e(labels[resource.kind] || resource.extension)}</p><h3>${e(resource.title)}</h3><p>${e(resource.description)}</p>${media}<p class="media-meta">${e(resource.extension)} · ${e(fileSize(resource.bytes))}</p><a class="button" href="${e(url)}" download>Download ${e(resource.extension)} <span aria-hidden="true">↓</span></a></section>`;
   }
 } catch (error) {
-  $('stage').innerHTML = `<p class="reader-status" role="alert">${e(error.message)} <a href="./">Zpět do knihovny</a></p>`;
+  $('stage').innerHTML = `<p class="reader-status" role="alert">${e(error.message)} <a href="./">Back to library</a></p>`;
 }

@@ -1,26 +1,27 @@
 <!doctype html>
-<html lang="cs">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Přidat materiály · Luke's English</title><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/style.css"></head>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Add materials · Luke's English</title><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/style.css"></head>
 <body>
-  <header class="site-header shell"><a class="brand" href="./"><img src="assets/favicon.svg" width="36" height="36" alt=""><span>Luke’s English<small>Petrova studovna</small></span></a><a class="back-link" href="./">← Zpět do knihovny</a></header>
-  <main class="shell help-main"><p class="eyebrow">KNIHOVNA, KTERÁ ROSTE S TEBOU</p><h1>Další lekce.<br>Další malý krok.</h1><p class="lead">Nové materiály přidáš přes GitHub. Po uložení se samy objeví ve studovně, obvykle během několika minut.</p>
-    <section class="help-step"><h2>1. Připrav složku</h2><p>Pro každou lekci nebo vlastní téma vytvoř jednu složku:</p><ul><li>Lekce s Lukem: <code>content/lessons/2026-11-09/</code></li><li>Vlastní téma: <code>content/topics/nazev-tematu/</code></li></ul><p>Vlož do ní HTML testy, zápisky, MP3 a přílohy. Soubory, které na sebe odkazují, ponech pohromadě pod původními názvy.</p></section>
-    <section class="help-step"><h2>2. Nahraj soubory</h2><ol><li>Otevři <a href="https://github.com/pupitooo/lukes-english/tree/main/content">složku content v repozitáři ↗</a>.</li><li>Na počítači zvol <b>Add file → Upload files</b> a přetáhni připravenou složku do <code>lessons</code> nebo <code>topics</code>.</li><li>Ulož změny tlačítkem <b>Commit changes</b> do větve <code>main</code>.</li></ol><p>Pokud složka ještě neexistuje, můžeš nejdřív přes <b>Add file → Create new file</b> vytvořit její <code>meta.json</code> podle vzoru níže a pak do ní nahrát ostatní soubory.</p><p class="help-note">Při nahrávání přes web GitHubu může mít jeden soubor nejvýše 25 MB. Větší nahrávky do 100 MB nahraj přes Git. Veřejné materiály může otevřít kdokoli s odkazem.</p></section>
-    <section class="help-step"><h2>3. Otevři studovnu</h2><p>Po dokončení <a href="https://github.com/pupitooo/lukes-english/actions">publikování na GitHubu ↗</a> obnov knihovnu. Nová lekce nebo téma už bude v přehledu. HTML se otevře jako stránka, MP3 v přehrávači a ostatní přílohy půjdou stáhnout.</p><a class="button primary" href="./">Zpět do knihovny →</a></section>
-    <details class="help-step"><summary>Volitelně: vlastní název, popis a pořadí lekce</summary><p>Do nové složky přidej soubor <code>meta.json</code>. Pro lekci může vypadat takto:</p><pre><code>{
+  <header class="site-header shell"><a class="brand" href="./"><img src="assets/favicon.svg" width="36" height="36" alt=""><span>Luke’s English<small>Petr’s study space</small></span></a><a class="back-link" href="./">← Back to library</a></header>
+  <main class="shell help-main"><p class="eyebrow">A LIBRARY THAT GROWS WITH YOU</p><h1>Another lesson.<br>Another small step.</h1><p class="lead">Add new materials through GitHub. Once saved, they will appear in your study space automatically, usually within a few minutes.</p>
+    <section class="help-step"><h2>1. Prepare a folder</h2><p>Create one folder for each lesson or personal topic:</p><ul><li>Lessons with Luke: <code>content/lessons/2026-11-09/</code></li><li>Personal topics: <code>content/topics/topic-name/</code></li></ul><p>Add your HTML tests, notes, MP3 files and attachments. Keep related files together and preserve their original names so links keep working.</p></section>
+    <section class="help-step"><h2>2. Upload your files</h2><ol><li>Open the <a href="https://github.com/pupitooo/lukes-english/tree/main/content">content folder in the repository ↗</a>.</li><li>On a computer, choose <b>Add file → Upload files</b> and drag your prepared folder into <code>lessons</code> or <code>topics</code>.</li><li>Save with <b>Commit changes</b> on the <code>main</code> branch.</li></ol><p>If the folder does not exist yet, use <b>Add file → Create new file</b> to create its <code>meta.json</code> using the example below, then upload the other files into it.</p><p class="help-note">GitHub’s web upload limit is 25 MiB per file. Use Git for larger recordings up to 100 MiB. These materials are public and can be opened by anyone with a link.</p></section>
+    <section class="help-step"><h2>3. Open your study space</h2><p>Once <a href="https://github.com/pupitooo/lukes-english/actions">publishing on GitHub ↗</a> finishes, refresh the library. Your new lesson or topic will be listed. HTML opens as a page, MP3 files have a player, and other attachments can be downloaded.</p><a class="button primary" href="./">Back to library →</a></section>
+    <details class="help-step"><summary>Optional: a custom title, description and lesson number</summary><p>Add a file named <code>meta.json</code> to your new folder. For a lesson, it could look like this:</p><pre><code>{
   "title": "Explaining solutions",
-  "description": "Analogie a vysvětlování vlastní práce.",
+  "description": "Analogies and explaining your work.",
   "date": "2026-11-09",
   "number": 2,
-  "tags": ["Mluvení", "Poslech"],
+  "tags": ["Speaking", "Listening"],
   "files": {
     "Homework.html": {
-      "title": "Domácí test",
+      "title": "Homework test",
       "kind": "test"
     }
   }
-}</code></pre><p>U vlastního tématu stačí <code>title</code>, <code>description</code> a <code>tags</code>. Bez metadat se použije název složky a titulky HTML souborů. Soubory s „test“ nebo „quiz“ v názvu se automaticky označí jako testy.</p></details>
-    <p class="help-note" style="margin-top:24px">Označení „hotovo“ se pamatuje pouze v daném prohlížeči. Mezi počítačem a mobilem se nepřenáší. Samotné testy si zachovávají původní způsob vyhodnocení.</p>
+}</code></pre><p>For a personal topic, <code>title</code>, <code>description</code> and <code>tags</code> are enough. Without metadata, the library uses the folder name and HTML page titles. Files with “test” or “quiz” in their names are automatically labeled as tests.</p></details>
+    <section class="help-step"><h2>Turn test questions into Anki practice</h2><p>When reviewing a supported test, use the checkbox next to each graded question. Incorrect answers are selected by default; correct answers can be selected too. Use <b>Vygenerovat prompt pro Codex</b> in the review panel, then copy the prompt or use your phone’s share sheet.</p><p>The prompt includes only selected, graded questions, your answers, the correct answers and the available explanations. It asks Codex to follow your existing Anki rules and check for duplicates before creating cards. Generating or sharing a prompt does not add cards on its own.</p><p>On a computer with the Codex desktop app, <b>Vložit do Codexu (počítač)</b> opens a new chat with the prompt prefilled. On mobile, copy and paste the prompt into Codex, or share it to an available app. <a href="https://learn.chatgpt.com/docs/reference/commands">Desktop link documentation ↗</a></p></section>
+    <p class="help-note" style="margin-top:24px">Done markers are saved in the current browser only and do not sync between your computer and phone. Tests keep their original grading behavior. Test explanations and Anki review controls may be in Czech.</p>
   </main>
-  <footer class="site-footer shell"><span>Luke’s English / Little and often.</span><a href="https://github.com/pupitooo/lukes-english">Repozitář na GitHubu ↗</a></footer>
+  <footer class="site-footer shell"><span>Luke’s English / Little and often.</span><a href="https://github.com/pupitooo/lukes-english">GitHub repository ↗</a></footer>
 </body></html>
