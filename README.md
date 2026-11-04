@@ -17,7 +17,9 @@ See the [upload guide](https://pupitooo.github.io/lukes-english/help.html). Web 
 
 ## Anki review
 
-The build adds shared review tools to the eleven current quizzes. Their source HTML stays unchanged. Each graded question gets a checkbox; incorrect answers are selected by default and correct answers can be included manually. Conditional questions are reviewed only after both halves are graded. Baseline questions become available after submission. Changing a baseline answer requires resubmission. A new attempt resets the selection.
+The build adds shared review tools to the eleven current quizzes. Each graded question gets a checkbox; incorrect answers are selected by default and correct answers can be included manually. Conditional questions are reviewed only after both halves are graded. Baseline questions become available after submission. Graded radio choices stay locked; the baseline now has an explicit **New attempt** button, just like the personal tests. Retaking clears answers, feedback and review selections together.
+
+The Anki panel and Copy action are visible before grading, with instructions and disabled actions until questions are selected. Copy can generate and copy the current prompt in one click. Builds use content-derived version parameters on library links, quiz pages, scripts, styles and catalog requests so cached files from an older release are not mixed with a new release.
 
 The generated prompt contains only selected graded questions, answer choices, the user’s answers, the answer key, available explanations and a stable attempt/question identifier. It requests production cards, deduplication and the existing local Anki workflow. No results are uploaded, and the site does not directly change Anki.
 
@@ -35,6 +37,18 @@ python3 -m http.server 8000 --directory _site
 ```
 
 Open `http://localhost:8000`. All paths also work under the GitHub Pages `/lukes-english/` prefix. JavaScript is required. Done markers stay in the current browser; test results are not synchronized.
+
+## Browser regression checks
+
+Development checks use Playwright; production still builds with Python only:
+
+```sh
+npm ci
+npx playwright install chromium webkit
+npm test
+```
+
+The checks run every quiz with mobile touch interaction in Chromium and WebKit. They cover adjacent repeated answers (including the two `(nothing)` choices), independent radio groups, locked grading, reset, checkbox visibility and selection, prompt contents, copying and iframe navigation. To use an installed Chrome executable, set `TEST_CHROME_PATH`. Set `TEST_BASE_URL` to verify a deployed build instead of starting a local preview.
 
 ## Initial content
 

@@ -1,4 +1,4 @@
-/* Shared Anki review for the supplied Q-array quizzes. No answers leave this page. */
+/* Shared Anki review for the supplied Q-array quizzes. No results are uploaded automatically. */
 (() => {
   'use strict';
   if (typeof Q === 'undefined' || !Array.isArray(Q) || !Q.length) return;
@@ -22,10 +22,11 @@
   panel.innerHTML = `
     <p class="anki-eyebrow">Z TESTU DO ANKI</p>
     <h2 id="anki-review-title">Procvič si to, co potřebuješ</h2>
-    <p>U vyhodnocených otázek zaškrtni <b>Zahrnout do promptu pro Anki</b>. Chybné odpovědi jsou předvybrané; správné můžeš přidat ručně.</p>
+    <p>Po vyhodnocení se u každé otázky objeví checkbox <b>Zahrnout do promptu pro Anki</b>. Chybné odpovědi jsou předvybrané; správné můžeš přidat ručně.</p>
     <p class="anki-count" id="anki-count" role="status"></p>
     <div class="anki-actions">
       <button class="anki-primary" id="anki-generate" type="button" disabled>Vygenerovat prompt pro Codex</button>
+      <button id="anki-copy" type="button" disabled>Kopírovat prompt</button>
       <button id="anki-mistakes" type="button">Vybrat chyby</button>
       <button id="anki-clear" type="button">Zrušit výběr</button>
     </div>
@@ -33,7 +34,6 @@
       <label class="anki-output-label" for="anki-prompt">Prompt s vybranými otázkami</label>
       <textarea id="anki-prompt" rows="12" readonly spellcheck="false"></textarea>
       <div class="anki-actions">
-        <button class="anki-primary" id="anki-copy" type="button">Kopírovat prompt</button>
         <button id="anki-share" type="button" hidden>Sdílet prompt…</button>
         <a id="anki-codex" hidden>Vložit do Codexu (počítač) ↗</a>
       </div>
@@ -124,11 +124,15 @@ ${JSON.stringify(selected.map(state => ({...state.data, identifikátor_dokladu: 
 
   function update() {
     const selected = selectedQuestions().length;
-    panel.hidden = states.size === 0;
-    jump.hidden = panel.hidden;
+    panel.hidden = false;
+    jump.hidden = false;
     jump.textContent = `Anki (${selected})`;
-    id('anki-count').textContent = `Vybráno: ${selected} z ${states.size} vyhodnocených otázek.`;
+    id('anki-count').textContent = states.size
+      ? `Vybráno: ${selected} z ${states.size} vyhodnocených otázek.`
+      : baseline ? 'Nejdřív dokonči test a stiskni Submit. Potom vyber otázky pro Anki.'
+        : 'Nejdřív vyhodnoť alespoň jednu otázku. Potom ji můžeš vybrat pro Anki.';
     id('anki-generate').disabled = selected === 0;
+    id('anki-copy').disabled = selected === 0;
     id('anki-output').hidden = !generated || selected === 0;
     id('anki-message').textContent = '';
     id('anki-copy').textContent = 'Kopírovat prompt';
@@ -151,7 +155,7 @@ ${JSON.stringify(selected.map(state => ({...state.data, identifikátor_dokladu: 
       const text = document.createElement('span');
       text.textContent = 'Zahrnout do promptu pro Anki';
       label.append(checkbox, text);
-      host.append(label);
+      host.insertBefore(label, baseline ? null : host.querySelector('button'));
       checkbox.addEventListener('change', event => {
         // Keep review selection separate from the quiz's own change handlers.
         event.stopPropagation();
@@ -186,6 +190,7 @@ ${JSON.stringify(selected.map(state => ({...state.data, identifikátor_dokladu: 
   });
   document.addEventListener('click', event => {
     if (event.target.closest('#reset')) {
+      document.querySelectorAll('.anki-question-choice').forEach(choice => choice.remove());
       states.clear();
       generated = false;
       id('anki-prompt').value = '';
@@ -213,6 +218,9 @@ ${JSON.stringify(selected.map(state => ({...state.data, identifikátor_dokladu: 
     try { return document.execCommand('copy'); } catch { return false; }
   }
   id('anki-copy').addEventListener('click', async () => {
+    if (!selectedQuestions().length) return;
+    generated = true;
+    update();
     let copied = false;
     if (navigator.clipboard?.writeText) {
       try { await navigator.clipboard.writeText(id('anki-prompt').value); copied = true; }

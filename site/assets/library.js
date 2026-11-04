@@ -1,4 +1,4 @@
-import {icon, labels, escapeHTML as e, resourceURL, studyURL, formatDate, getCompleted, toggleCompleted, loadCatalog} from './shared.js';
+import {icon, labels, escapeHTML as e, resourceURL, studyURL, formatDate, getCompleted, toggleCompleted, loadCatalog} from './shared.js?v=__BUILD_VERSION__';
 
 const $ = id => document.getElementById(id);
 let groups = [], filter = new URLSearchParams(location.search).get('view') || 'all';

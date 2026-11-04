@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Build the library from content folders; Python's standard library is enough."""
 import json
+import hashlib
 import os
 import re
 import shutil
@@ -76,6 +77,15 @@ def enhance_test(destination):
 
 
 def build():
+    digest = hashlib.sha256()
+    sources = [ROOT / 'scripts' / 'build.py']
+    for directory in ('site', 'content'):
+        sources.extend(path for path in (ROOT / directory).rglob('*')
+                       if path.is_file() and not any(part.startswith('.') for part in path.relative_to(ROOT).parts))
+    for source in sorted(sources):
+        digest.update(source.relative_to(ROOT).as_posix().encode())
+        digest.update(source.read_bytes())
+    version = digest.hexdigest()[:12]
     if OUT.exists():
         shutil.rmtree(OUT)
     shutil.copytree(ROOT / "site", OUT)
@@ -138,7 +148,23 @@ def build():
     groups.sort(key=lambda g: (g["category"] != "lessons", g["title"].casefold()))
     lessons = sorted((g for g in groups if g["category"] == "lessons"), key=lambda g: g["date"], reverse=True)
     groups = lessons + [g for g in groups if g["category"] == "topics"]
-    catalog = {"version": 1, "groups": groups}
+    # New builds get fresh HTML, JS and CSS URLs, including standalone quiz pages.
+    for path in OUT.rglob('*'):
+        if path.is_file() and path.suffix.lower() in {'.html', '.htm', '.js'}:
+            text = path.read_text().replace('__BUILD_VERSION__', version)
+            if path.suffix.lower() in {'.html', '.htm'}:
+                def versioned_link(match):
+                    url = urlsplit(match[2])
+                    if url.scheme or url.netloc:
+                        return match[0]
+                    return f'{match[1]}{match[2]}?v={version}{match[3]}'
+                text = re.sub(r'''((?:src|href)=["'])([^"']+\.(?:js|css|html?))(["'])''',
+                              versioned_link, text)
+            path.write_text(text)
+    for group in groups:
+        for resource in group['resources']:
+            resource['bytes'] = (OUT / resource['path']).stat().st_size
+    catalog = {"version": 2, "build": version, "groups": groups}
     (OUT / "assets" / "catalog.json").write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + "\n")
     (OUT / ".nojekyll").touch()
     validate_links()

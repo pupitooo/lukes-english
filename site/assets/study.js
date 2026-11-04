@@ -1,4 +1,4 @@
-import {loadCatalog, escapeHTML as e, resourceURL, studyURL, icon, labels, fileSize, getCompleted, toggleCompleted} from './shared.js';
+import {loadCatalog, escapeHTML as e, resourceURL, studyURL, icon, labels, fileSize, getCompleted, toggleCompleted} from './shared.js?v=__BUILD_VERSION__';
 const $ = id => document.getElementById(id);
 let activePath;
 function updateDone() {
@@ -35,7 +35,10 @@ try {
     frame.addEventListener('load', () => {
       try {
         const current = new URL(frame.contentWindow.location.href);
-        const sibling = group.resources.find(r => new URL(resourceURL(r.path), location.href).href === current.href);
+        const sibling = group.resources.find(r => {
+          const expected = new URL(resourceURL(r.path), location.href);
+          return expected.origin === current.origin && expected.pathname === current.pathname;
+        });
         if (sibling && sibling.path !== activePath) location.replace(studyURL(sibling.path));
       } catch { /* PDF readers or external destinations may not expose their location. */ }
     });

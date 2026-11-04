@@ -9,12 +9,13 @@ export const icons = {
 export const labels = {test: 'Test', document: 'Notes', audio: 'Listening', download: 'Download', pdf: 'PDF', video: 'Video'};
 export function icon(kind) { return `<svg viewBox="0 0 24 24" aria-hidden="true">${icons[kind] || icons.download}</svg>`; }
 export function escapeHTML(value) { return String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-export const resourceURL = path => path.split('/').map(encodeURIComponent).join('/');
-export const studyURL = path => `study.html?file=${encodeURIComponent(path)}`;
+export const buildVersion = '__BUILD_VERSION__';
+export const resourceURL = path => `${path.split('/').map(encodeURIComponent).join('/')}?v=${buildVersion}`;
+export const studyURL = path => `study.html?file=${encodeURIComponent(path)}&v=${buildVersion}`;
 export function formatDate(value) { return value ? new Intl.DateTimeFormat('en-US', {day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(`${value}T12:00:00Z`)) : ''; }
 export function fileSize(bytes) { return bytes >= 1048576 ? `${(bytes / 1048576).toFixed(1)} MB` : `${Math.max(1, Math.round(bytes / 1024))} kB`; }
 export async function loadCatalog() {
-  const response = await fetch('assets/catalog.json');
+  const response = await fetch(`assets/catalog.json?v=${buildVersion}`);
   if (!response.ok) throw new Error('Unable to load materials. Please refresh the page.');
   return response.json();
 }
