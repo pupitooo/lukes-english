@@ -21,7 +21,7 @@ The build adds shared review tools to the eleven current quizzes. Each graded qu
 
 The Anki panel and Copy action are visible before grading, with instructions and disabled actions until questions are selected. Copy can generate and copy the current prompt in one click. Builds use content-derived version parameters on library links, quiz pages, scripts, styles and catalog requests so cached files from an older release are not mixed with a new release.
 
-The generated prompt contains only selected graded questions, answer choices, the user’s answers, the answer key, available explanations and a stable attempt/question identifier. It requests production cards, deduplication and the existing local Anki workflow. No results are uploaded, and the site does not directly change Anki.
+The generated prompt contains only selected graded questions, answer choices, the user’s answers, the answer key, available explanations and a stable attempt/question identifier. It requests complete Czech sentences to translate into complete sentences in natural American English, with brief Czech context in parentheses only when needed to clarify grammar, time, meaning or formality. English gap fills are converted into sentence translation cards. It also requests deduplication and the existing local Anki workflow. No results are uploaded, and the site does not directly change Anki.
 
 Copy uses the Clipboard API with a manual selection fallback. Native sharing is shown where available. A documented `codex://threads/new?prompt=...` link pre-fills the desktop composer; it is hidden on mobile, where copying/pasting or the system share sheet is available. No message is automatically submitted.
 
