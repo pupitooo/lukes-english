@@ -55,7 +55,7 @@ The checks run every quiz with mobile touch interaction in Chromium and WebKit. 
 ## Initial content
 
 - Lesson 1, November 2, 2026: 4 HTML materials, 2 MP3 files, 1 Anki deck.
-- Conditionals: 5 personal tests of 20 sentences, with two answers per sentence.
+- Conditionals: 5 personal tests of 20 sentences, with two answers per sentence, plus one sentence-translation practice with all relevant conditional variants.
 - Countable & uncountable: 5 personal tests of 20 questions.
 
 Materials come from the supplied local lesson files and personal tests. This repository grants no additional license to their content.
