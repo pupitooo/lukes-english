@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "_site"
 EXTENSIONS = {
     ".html", ".htm", ".mp3", ".m4a", ".wav", ".ogg", ".mp4", ".webm",
-    ".pdf", ".apkg", ".zip", ".txt", ".md", ".docx", ".xlsx", ".pptx",
+    ".pdf", ".zip", ".txt", ".md", ".docx", ".xlsx", ".pptx",
     ".css", ".js", ".json", ".png", ".jpg", ".jpeg", ".gif", ".svg",
     ".webp", ".woff", ".woff2", ".vtt", ".srt",
 }

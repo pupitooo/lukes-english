@@ -9,7 +9,7 @@ Petr’s library of lessons with Luke, interactive HTML tests, listening practic
 - Lessons: `content/lessons/YYYY-MM-DD/`
 - Personal topics: `content/topics/topic-name/`
 
-Upload related HTML, MP3 and other attachments into one folder. Preserve filenames and relative links. Optional `meta.json` provides a title, description, date, lesson number, tags and file labels; use the existing lesson as an example. New files are discovered even without metadata. For a quiz without “test” or “quiz” in its filename, set `"kind": "test"`.
+Upload related HTML, MP3 and other attachments into one folder. Preserve filenames and relative links. Import Anki packages directly in Anki. Optional `meta.json` provides a title, description, date, lesson number, tags and file labels; use the existing lesson as an example. New files are discovered even without metadata. For a quiz without “test” or “quiz” in its filename, set `"kind": "test"`.
 
 Every push to `main` builds the catalog, checks local links and publishes `_site` through GitHub Actions. Pages uses GitHub Actions as its source. The site interface and metadata are English; tests, answer explanations and related review controls may use Czech.
 
@@ -54,7 +54,7 @@ The checks run every quiz with mobile touch interaction in Chromium and WebKit. 
 
 ## Initial content
 
-- Lesson 1, November 2, 2026: 4 HTML materials, 2 MP3 files, 1 Anki deck.
+- Lesson 1, November 2, 2026: 4 HTML materials and 2 MP3 files.
 - Conditionals: 5 personal tests of 20 sentences, with two answers per sentence, plus one sentence-translation practice with all relevant conditional variants.
 - Countable & uncountable: 5 personal tests of 20 questions.
 
