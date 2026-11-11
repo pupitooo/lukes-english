@@ -1,0 +1,33 @@
+{
+  "title": "Conditionals, the Test",
+  "description": "A conditionals test and practice with could, might and should in the result clause.",
+  "date": "2026-11-11",
+  "number": 4,
+  "tags": [
+    "Conditionals",
+    "Modal verbs",
+    "Listening"
+  ],
+  "files": {
+    "Class - Handout.html": {
+      "title": "Class notes",
+      "description": "Conditional forms and alternatives to if."
+    },
+    "Class - Conditionals Test.html": {
+      "title": "Green Build: conditionals test",
+      "description": "20 conditional questions with instant feedback and a final score."
+    },
+    "Homework - 1 Listening.mp3": {
+      "title": "Lesson listening",
+      "description": "Listen to the dialogue for the homework."
+    },
+    "Homework - 3 Exercise.html": {
+      "title": "Conditionals with could, might and should",
+      "description": "Interactive modal choices, translations and listening questions."
+    },
+    "Homework - 5 Anki cards.apkg": {
+      "title": "Anki cards from Luke",
+      "description": "Download the original card deck."
+    }
+  }
+}

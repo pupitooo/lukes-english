@@ -1,0 +1,33 @@
+{
+  "title": "What If? Conditionals 0 to 3",
+  "description": "Zero, first, second, third and mixed conditionals, with a separate A1–C1 grammar test.",
+  "date": "2026-11-09",
+  "number": 3,
+  "tags": [
+    "Conditionals",
+    "Grammar",
+    "Listening"
+  ],
+  "files": {
+    "Class - Handout.html": {
+      "title": "Class notes",
+      "description": "Conditional forms, Czech examples and alternatives to if."
+    },
+    "Class - Level Test A1 to C1.html": {
+      "title": "Level test A1 to C1",
+      "description": "50 questions with results by level."
+    },
+    "Homework - 1 Listening.mp3": {
+      "title": "Lesson listening",
+      "description": "Listen to the dialogue for the homework."
+    },
+    "Homework - 3 Exercise.html": {
+      "title": "Conditionals: if I go, if I went, if I had gone",
+      "description": "Interactive conditional choices, translations and listening questions."
+    },
+    "Homework - 5 Anki cards.apkg": {
+      "title": "Anki cards from Luke",
+      "description": "Download the original card deck."
+    }
+  }
+}

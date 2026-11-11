@@ -41,7 +41,7 @@ async function main() {
         page.on('pageerror',error=>errors.push(error.message));
         page.on('response',response=>{if(response.status()>=400)errors.push(`${response.status()} ${response.url()}`)});
         const catalog = await (await context.request.get(base+'assets/catalog.json')).json();
-        const tests = catalog.groups.flatMap(group=>group.resources).filter(resource=>resource.kind==='test');
+        const tests = catalog.groups.flatMap(group=>group.resources).filter(resource=>resource.ankiReview);
         assert.equal(tests.length,11);
         await page.goto(base+'?v='+catalog.build);
         await page.locator('.group-card').first().waitFor();
@@ -140,7 +140,8 @@ async function main() {
           console.log(`PASS ${engine}: ${test.path}`);
         }
         // Sentence exercises export manually selected material without inventing user mistakes.
-        const exercise = catalog.groups.flatMap(group=>group.resources).find(resource=>resource.path.endsWith('Homework - 3 Exercise.html'));
+        const lessonOne = catalog.groups.find(group=>group.id==='lessons/2026-11-02');
+        const exercise = lessonOne.resources.find(resource=>resource.path.endsWith('Homework - 3 Exercise.html'));
         await page.goto(base+exercise.path.split('/').map(encodeURIComponent).join('/')+'?v='+catalog.build);
         const cards = page.locator('[data-anki-exercise] .it');
         assert.equal(await cards.count(),53);
