@@ -11,6 +11,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
+from stories import build_stories
+
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "_site"
 EXTENSIONS = {
@@ -145,6 +147,9 @@ def build():
                     "number": meta.get("number"), "tags": meta.get("tags", []),
                     "resources": resources,
                 })
+    story_group = build_stories(ROOT, OUT)
+    if story_group:
+        groups.append(story_group)
     groups.sort(key=lambda g: (g["category"] != "lessons", g["title"].casefold()))
     lessons = sorted((g for g in groups if g["category"] == "lessons"), key=lambda g: g["date"], reverse=True)
     groups = lessons + [g for g in groups if g["category"] == "topics"]

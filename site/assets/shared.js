@@ -28,6 +28,8 @@ export function getCompleted() {
   }
   return completed;
 }
+export const completedKey = storageKey;
+export function reloadCompleted() { completed = undefined; }
 export function toggleCompleted(path) {
   const set = getCompleted();
   set.has(path) ? set.delete(path) : set.add(path);

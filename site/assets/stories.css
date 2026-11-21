@@ -1,14 +1,8 @@
-.stories-main{max-width:780px;padding-top:55px;padding-bottom:70px}
+.stories-main{max-width:780px;margin:0 auto;padding:40px 24px 70px}
 .stories-main h1{font-size:46px;letter-spacing:-1px;font-family:Georgia,serif;font-weight:400;line-height:1.15;margin-bottom:20px}
 .stories-main .lead{color:var(--muted);font-size:17px;line-height:1.8}
-.story-nav{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 18px}
-.story-nav a{border:1px solid #c9d0c2;border-radius:7px;padding:8px 15px;font-size:13px;font-weight:600;text-decoration:none}
-.story-nav a:hover{color:var(--orange)}
 .toggle{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);cursor:pointer}
 .toggle input{width:17px;height:17px;accent-color:var(--green)}
-.story{margin-top:46px;padding-top:30px;border-top:1px solid var(--line)}
-.story-head h2{font-family:Georgia,serif;font-weight:400;font-size:32px;letter-spacing:-.6px;margin:0 0 6px}
-.story-blurb{color:var(--muted);font-size:14px}
 .version{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:26px 28px;margin-top:20px}
 .version header{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px}
 .version-no{font-size:10px;letter-spacing:1.6px;font-weight:750;color:var(--green);text-transform:uppercase}
@@ -28,4 +22,4 @@
 .changes h4{margin:16px 0 4px;font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted)}
 .changes ul{margin:0;padding-left:20px}
 .changes li{font-size:13px;margin:6px 0}
-@media(max-width:760px){.stories-main{padding-top:35px}.stories-main h1{font-size:36px}.stories-main .lead{font-size:15px}.version{padding:20px 18px}.text p{font-size:15px}}
+@media(max-width:760px){.stories-main h1{font-size:36px}.stories-main .lead{font-size:15px}.version{padding:20px 18px}.text p{font-size:15px}}

@@ -1,4 +1,4 @@
-import {icon, labels, escapeHTML as e, resourceURL, studyURL, formatDate, getCompleted, toggleCompleted, loadCatalog} from './shared.js?v=__BUILD_VERSION__';
+import {icon, labels, escapeHTML as e, resourceURL, studyURL, formatDate, getCompleted, toggleCompleted, reloadCompleted, completedKey, loadCatalog} from './shared.js?v=__BUILD_VERSION__';
 
 const $ = id => document.getElementById(id);
 let groups = [], filter = new URLSearchParams(location.search).get('view') || 'all';
@@ -56,8 +56,11 @@ $('groups').addEventListener('click', event => {
   [...document.querySelectorAll('[data-done]')].find(b => b.dataset.done === path)?.focus({preventScroll:true});
   window.scrollTo(0, scroll);
 });
-window.addEventListener('pageshow', event => { if (event.persisted) location.reload(); });
-window.addEventListener('storage', () => location.reload());
+// Re-read the done markers and redraw in place; never reload the page. Other tabs on the same
+// origin (pupitooo.github.io) also write to localStorage, so only our own key may trigger this.
+const refreshDone = () => { reloadCompleted(); render(); };
+window.addEventListener('pageshow', event => { if (event.persisted) refreshDone(); });
+window.addEventListener('storage', event => { if (event.key === null || event.key === completedKey) refreshDone(); });
 
 try {
   ({groups} = await loadCatalog());

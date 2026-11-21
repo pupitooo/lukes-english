@@ -1,0 +1,53 @@
+{
+  "title": "The bus that never came",
+  "description": "A short trip to school that wasn’t so short.",
+  "date": "2026-11-21",
+  "order": 2,
+  "original": "You won't belive what has happend. One day I came to the bus station in front of our house. I went to the school with both of my kids, so it was short family trip to the school by bus and short walk back home. Or it was supposed to be short and economic and on fresh air. But after ten minutes bus hasn't been there yet. We go to the school at 7:23, so we still had a lot of time. But after another 10 minutes, the situation was quite different. I looked at other kids and they don't look like they wanted to go to school by their own. And fast walk takes 15-20m at least. So we finally changed our mind and we took a car, but I really don't know what other kids did and if they asked their parents to drive them or what.",
+  "versions": [
+    {
+      "tense": "past",
+      "corrected": true,
+      "en": "You won't {belive what has happend|believe what happened}. {One day I came to the bus station|One day I went to the bus stop} in front of our house. I {went to the school with|was taking} both of my kids{| to school}, so it {was|was supposed to be} {|a }short family trip to {the school|school} by bus and {|a }short walk back home. {Or it was supposed to be short and economic and on fresh air|That was the plan, anyway: short, cheap and in the fresh air}. But after ten minutes {bus hasn't been there yet|the bus still hadn't arrived}. We {go to the school|had to be at school} at 7:23, so we still had a lot of time. But after another 10 minutes, the situation was quite different. I looked at {|the }other kids and they {don't|didn't} look like they {wanted to go to school by their own|were going to walk to school on their own}. And {|a }fast walk takes {15-20m at least|at least 15-20 minutes}. So we finally {changed our mind and we took a car|changed our minds and took the car}, but I really don't know what {|the }other kids did {and if|or whether} they asked their parents to drive them or what.",
+      "cz": "Nebudeš tomu věřit. Jednoho dne jsem šel na autobusovou zastávku před naším domem. Vedl jsem obě děti do školy, takže to měla být krátká rodinná cesta do školy autobusem a krátká procházka zpátky domů. Takový byl plán, každopádně: krátce, levně a na čerstvém vzduchu. Ale po deseti minutách autobus pořád nepřijel. Museli jsme být ve škole v 7:23, takže jsme měli ještě spoustu času. Po dalších deseti minutách už byla situace docela jiná. Podíval jsem se na ostatní děti a nevypadaly, že by šly do školy pěšky samy. A rychlá chůze trvá minimálně 15–20 minut. Tak jsme nakonec změnili názor a vzali auto, ale opravdu nevím, co udělaly ostatní děti, nebo jestli požádaly rodiče, aby je svezli, nebo co."
+    },
+    {
+      "tense": "news",
+      "corrected": false,
+      "en": "You won't believe what [[has happened]]! I[['ve just taken]] both of my kids to school, and it [[hasn't gone]] the way I planned. We went to the bus stop in front of our house. It was supposed to be a short, cheap trip in the fresh air: a bus to school and a short walk back home. But after ten minutes the bus still hadn't arrived. We had to be at school at 7:23, so we still had a lot of time. After another ten minutes, though, the situation was quite different. I looked at the other kids and they didn't look like they were going to walk on their own. And a fast walk takes at least 15-20 minutes. So we changed our minds and took the car. I[['ve just got]] home, and I [[still don't know]] what the other kids did.",
+      "cz": "Nebudeš tomu věřit! Právě jsem odvedl obě děti do školy a nevyšlo to tak, jak jsem plánoval. Šli jsme na autobusovou zastávku před naším domem. Měla to být krátká a levná cesta na čerstvém vzduchu: autobusem do školy a kousek pěšky zpátky domů. Ale po deseti minutách autobus pořád nepřijel. Museli jsme být ve škole v 7:23, takže jsme měli ještě spoustu času. Po dalších deseti minutách už ale byla situace docela jiná. Podíval jsem se na ostatní děti a nevypadaly, že by šly pěšky samy. A rychlá chůze trvá minimálně 15–20 minut. Tak jsme změnili názor a vzali auto. Právě jsem se vrátil domů a pořád nevím, co udělaly ostatní děti."
+    },
+    {
+      "tense": "period",
+      "corrected": false,
+      "en": "I[['ve had]] a crazy week. Every morning I[['ve taken]] both of my kids to school by bus, and the plan [[has]] always [[been]] simple: a short trip, then a short walk back home in the fresh air. But this week the bus [[hasn't arrived]] on time even once. Today I[['ve waited]] at the bus stop for twenty minutes and it [[still hasn't come]]. We have to be at school at 7:23, so we[['ve]] almost [[run out]] of time. I[['ve looked]] at the other kids, and nobody [[has decided]] to walk. A fast walk takes at least 15-20 minutes, so we[['ve]] finally [[given up]] and [[taken]] the car. I[['ve never seen]] so many parents driving to school! I [[haven't asked]] anyone what they [[have done]] yet.",
+      "cz": "Měl jsem šílený týden. Každé ráno jsem vzal obě děti do školy autobusem a plán byl vždycky jednoduchý: krátká cesta a pak krátká procházka zpátky domů na čerstvém vzduchu. Tento týden ale autobus ani jednou nepřijel včas. Dnes jsem na zastávce čekal dvacet minut a pořád nepřijel. Musíme být ve škole v 7:23, takže nám už skoro došel čas. Podíval jsem se na ostatní děti a nikdo se nerozhodl jít pěšky. Rychlá chůze trvá minimálně 15–20 minut, tak jsme to nakonec vzdali a vzali auto. Nikdy jsem neviděl tolik rodičů, kteří vozí děti do školy! Zatím jsem se nikoho nezeptal, co udělali."
+    }
+  ],
+  "changes": [
+    {
+      "heading": "Tenses",
+      "items": [
+        "what has <b>happend</b> → what <b>happened</b>: the story is told in the past, and “one day” calls for past simple.",
+        "the bus <b>hasn’t been</b> there yet → the bus <b>still hadn’t arrived</b>: it’s the past, so past perfect.",
+        "We <b>go</b> to school at 7:23 → We <b>had to be</b> at school at 7:23: past tense, and “had to” expresses the obligation.",
+        "they <b>don’t</b> look like they wanted → they <b>didn’t</b> look like they wanted: both parts in the past.",
+        "it <b>was</b> a short trip → it <b>was supposed to be</b> a short trip: a plan that didn’t work out.",
+        "A fast walk <b>takes</b> at least 15–20 minutes: present simple is fine here, it’s a general fact."
+      ]
+    },
+    {
+      "heading": "Words and phrases",
+      "items": [
+        "<b>bus station</b> is a bus terminal. A stop is a <b>bus stop</b>.",
+        "<b>economic</b> is about the economy. For “cheap and cost-saving” use <b>economical</b> or just <b>cheap</b>.",
+        "<b>on fresh air</b> → <b>in the fresh air</b> (or <i>outdoors</i>).",
+        "<b>by their own</b> → <b>on their own</b>.",
+        "<b>go to the school</b> → <b>go to school</b>: no article when it’s about attending school. “The school” is the building.",
+        "<b>took a car</b> sounds like a taxi or a rental. Your own car: <b>took the car</b> or <b>went by car</b>.",
+        "<b>Articles</b> were missing in <i>the bus, the other kids, a short trip, a fast walk</i>.",
+        "<b>15-20m</b> → <b>15–20 minutes</b>; <b>m</b> could mean metres."
+      ]
+    }
+  ]
+}

@@ -17,7 +17,7 @@ See the [upload guide](https://pupitooo.github.io/lukes-english/help.html). Web 
 
 ## My stories
 
-`site/stories.html` collects Petr’s own short stories. Each has a corrected version with the changes marked, the original wording hidden behind a toggle, the same story retold in other tenses and a Czech translation for every version.
+Petr’s own texts live in `content/stories/<slug>.json`. The build renders each file into a page of the **My stories** topic card in the library (searchable, with done markers). Every story has a corrected version with the changes marked, the original wording hidden behind a toggle, the same story retold in other tenses and a Czech translation for each version. See `AGENTS.md` for the file format and the workflow.
 
 ## Anki review
 
