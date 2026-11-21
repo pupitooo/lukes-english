@@ -15,6 +15,10 @@ Every push to `main` builds the catalog, checks local links and publishes `_site
 
 See the [upload guide](https://pupitooo.github.io/lukes-english/help.html). Web uploads support files up to 25 MiB; use Git for larger files up to 100 MiB. Do not use Git LFS for Pages assets.
 
+## My stories
+
+`site/stories.html` collects Petr’s own short stories. Each has a corrected version with the changes marked, the original wording hidden behind a toggle, the same story retold in other tenses and a Czech translation for every version.
+
 ## Anki review
 
 The build adds shared review tools to the eleven current quizzes. Each graded question gets a checkbox; incorrect answers are selected by default and correct answers can be included manually. Conditional questions are reviewed only after both halves are graded. Baseline questions become available after submission. Graded radio choices stay locked; the baseline now has an explicit **New attempt** button, just like the personal tests. Retaking clears answers, feedback and review selections together.

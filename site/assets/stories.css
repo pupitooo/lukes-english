@@ -1,0 +1,31 @@
+.stories-main{max-width:780px;padding-top:55px;padding-bottom:70px}
+.stories-main h1{font-size:46px;letter-spacing:-1px;font-family:Georgia,serif;font-weight:400;line-height:1.15;margin-bottom:20px}
+.stories-main .lead{color:var(--muted);font-size:17px;line-height:1.8}
+.story-nav{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 18px}
+.story-nav a{border:1px solid #c9d0c2;border-radius:7px;padding:8px 15px;font-size:13px;font-weight:600;text-decoration:none}
+.story-nav a:hover{color:var(--orange)}
+.toggle{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);cursor:pointer}
+.toggle input{width:17px;height:17px;accent-color:var(--green)}
+.story{margin-top:46px;padding-top:30px;border-top:1px solid var(--line)}
+.story-head h2{font-family:Georgia,serif;font-weight:400;font-size:32px;letter-spacing:-.6px;margin:0 0 6px}
+.story-blurb{color:var(--muted);font-size:14px}
+.version{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:26px 28px;margin-top:20px}
+.version header{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.version-no{font-size:10px;letter-spacing:1.6px;font-weight:750;color:var(--green);text-transform:uppercase}
+.version h3{font-family:Georgia,serif;font-weight:500;font-size:21px;margin:0}
+.tense{background:#e9eedf;border:1px solid #d9e1cd;border-radius:8px;padding:12px 15px;font-size:13px;line-height:1.7;margin-bottom:16px}
+.legend{font-size:12px;color:var(--muted)}
+.text p{font-size:16px;line-height:1.9;margin:0}
+.text.cz p{color:#3d4f46}
+.text.original p{color:var(--muted);font-style:italic}
+.fix ins{background:#fff0c2;border-bottom:2px solid var(--orange);text-decoration:none;padding:0 2px;border-radius:2px}
+.fix del{display:none;color:#a2503a;background:#fbe6df;padding:0 2px;border-radius:2px;text-decoration-thickness:2px}
+.show-was .fix del{display:inline}
+.pp{background:var(--lime);border-radius:3px;padding:0 3px;font-weight:650}
+.more{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
+.more summary{cursor:pointer;font-size:13px;font-weight:600}
+.more[open] summary{margin-bottom:10px}
+.changes h4{margin:16px 0 4px;font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted)}
+.changes ul{margin:0;padding-left:20px}
+.changes li{font-size:13px;margin:6px 0}
+@media(max-width:760px){.stories-main{padding-top:35px}.stories-main h1{font-size:36px}.stories-main .lead{font-size:15px}.version{padding:20px 18px}.text p{font-size:15px}}
