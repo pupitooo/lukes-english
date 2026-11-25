@@ -56,6 +56,10 @@ npm test
 
 The checks run every quiz with mobile touch interaction in Chromium and WebKit. They cover adjacent repeated answers (including the two `(nothing)` choices), independent radio groups, locked grading, reset, checkbox visibility and selection, prompt contents, copying and iframe navigation. To use an installed Chrome executable, set `TEST_CHROME_PATH`. Set `TEST_BASE_URL` to verify a deployed build instead of starting a local preview.
 
+## Current lessons
+
+Seven lessons are available, dated November 2 through December 1, 2026. Lesson 6 includes class notes, a listening recording and an interactive exercise with 35 graded questions plus a personal story task. Lesson 7 currently contains class notes only; its homework has not been supplied yet.
+
 ## Initial content
 
 - Lesson 1, November 2, 2026: 4 HTML materials and 2 MP3 files.
